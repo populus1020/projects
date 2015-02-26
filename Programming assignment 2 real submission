@@ -1,0 +1,89 @@
+// this sets the background color of the master UIView (when there are no windows/tab groups on it)
+Titanium.UI.setBackgroundColor('#87770B');
+
+//
+// create base UI tab and root window
+//
+var win1 = Titanium.UI.createWindow({  
+    title:'Tab 1',
+    backgroundColor:'#24FF24'
+});
+var firstSection = Ti.UI.createTableViewSection({headerTitle: 'Oh, Hello'
+}); 
+// Create a Button.
+var button1 = Ti.UI.createButton({
+	title : 'button1',
+	height : 30, 
+	width : 30,
+	top : 30,
+	left : 30
+});
+button1.addEventListener('click', function(e) {alert('You clicked Me!');
+}); 
+
+// Listen for click events.
+button1.addEventListener('click', function() {
+	alert('\'button1\' was clicked!');
+});
+var nav = Titanium.UI.Android.createNavigationGroup9({
+	window: win2
+}); 
+
+// Add to the parent view.
+parentView.add(button1);
+
+var switchOrientation = Ti.UI.createButton({title: 'Make Landscape'});
+switchOrientation.addEventListener('click', rotateLayout);
+var layout = Ti.UI.createView({layout: 'vertical'});
+function rotateLayout() {
+	win1.orientationModes = [Ti.UI.LANDSCAPE_LEFT];
+	switchOrientation.hide();
+}
+win2.add(button);
+win1.add(nav);
+win1.open();
+
+
+
+//
+// create controls tab and root window
+//
+var win2 = Titanium.UI.createWindow({  
+    title:'Tab 2',
+    backgroundColor:'#873AF0'
+
+});
+var button2 = Ti.UI.createButton({
+	title : 'button2',
+	height : 30,
+	width : 30,
+	top : 30,
+	left : 30
+});
+button2.addEventListener('click', function(e) {alert('You clicked Me!');
+}); 
+
+// Listen for click events.
+button1.addEventListener('click', function() {
+	alert('\'button2\' was clicked!');
+});
+var nav = Titanium.UI.Android.createNavigationGroup9({
+	window: win1
+}); 
+
+// Add to the parent view.
+parentView.add(button2);
+
+var switchOrientation = Ti.UI.createButton({title: 'Make Landscape'});
+switchOrientation.addEventListener('click', rotateLayout);
+var layout = Ti.UI.createView({layout: 'vertical'});
+function rotateLayout() {
+	win1.orientationModes = [Ti.UI.LANDSCAPE_LEFT];
+	switchOrientation.hide();
+}
+win1.add(button);
+win2.add(nav);
+win2.open();
+
+
+//
