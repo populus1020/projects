@@ -1,0 +1,143 @@
+Titanium.UI.setBackgroundColor('#87770B');
+
+//
+// create base UI tab and root window
+//
+var win1 = Titanium.UI.createWindow({  
+    title:'Home'',
+    backgroundColor:'#24FF24'
+});
+
+var firstSection = Ti.UI.createTableViewSection({headerTitle: 'Oh, Hello'
+}); 
+// Create a Button.
+var button1 = Ti.UI.createButton({
+	title : 'Navigate',
+	height : 30, 
+	width : 30,
+	top : 30,
+	left : 30
+});
+button1.addEventListener('click', function(e) {alert('You clicked Me!');
+}); 
+// Listen for click events.
+button1.addEventListener('click', function() {
+	alert('\'button1\' was clicked!');
+});
+var nav = Titanium.UI.Android.NavigationWindow({
+	window: win2
+}); 
+// Add to the parent view.
+parentView.add(button1);
+var switchOrientation = Ti.UI.createButton({title: 'Make Landscape'});
+switchOrientation.addEventListener('click', rotateLayout);
+var layout = Ti.UI.createView({layout: 'vertical'});
+function rotateLayout() {
+	win1.orientationModes = [Ti.UI.LANDSCAPE_LEFT];
+	switchOrientation.hide();
+}
+win2.add(button);
+win1.add(nav);
+win1.open();
+var Teas = ['#E9967A', '#00CED1', '#FF8C00', '#ADFF2F'];
+
+allRows = [];
+var theColours = Ti.UI.createTableView({});
+
+for (var i=0; i<Teas.length; i++) {
+	theRow = Ti.TI.createTableViewRow({backgroundColor:
+		Teas[i], height:50, TeaColour:Teas[i]});
+		allRows.push(theRow);
+}
+
+theColours.setData(allRows);
+win1.add(theColours);
+
+function getVerdict(colour) {
+	var indicator = colour.charAt (1); 
+	var msg;
+	//Make a crude decision on the strength of the tea based on the 2nd character of the hex color 
+	switch(indicator) {
+		case 'F': msg = 'Awesome'; break;
+		case 'D': msg = 'Cool'; break;
+		case 'C': msg = 'Perfect'; break;
+		case 'G': msg = 'Amazing'; break;
+	}
+	return msg;
+{; 
+	
+function showTeaVerdict(_args) {
+	var teaVerdict = Ti.UI.createWindow({layout:'vertical'});
+	
+	teaVerdict.background = _args;
+	teaVerdict.msg = getVerdict(_args);
+	var judgement = Ti.UI.createLabel
+	({text:teaVerdict.msg, top:'50%'});
+	var close = Ti.UI.createButton
+	({title:'Choose again', top:25%''});
+	close.addEvenntListener('click', function(e)
+	{teaVerdict.close();
+		//release the resources
+		teaVerdict = null;
+	});
+	
+	teaVerdict.add(judgement);
+	teaVerdict.add(close);
+	teaVerdict.open();
+}
+theColours.addEventListener('click', function(e)
+{showTeaVerdict(e.source.TeaColour)});
+
+
+}
+	
+	}
+}
+// create controls tab and root window
+//
+var win2 = Titanium.UI.createWindow({  
+    title:'Activity',
+    backgroundColor:'#873AF0'
+
+});
+var options = Ti.UI.createView({layout: 'vertical'});
+var showCamera = Ti.UI.createButon({title: 'Show Camera'});
+var thePhoto = Ti.UI.createImageView({height: '30%', width: '30%'});
+options.add(showCamera);
+options.add(thePhoto);
+win1.add(options);
+
+function showPhoto(_args) {
+	thePhoto.setImage(_args.media);
+}
+showCamera.addEventListener('click', function (e) {
+	Ti.Media.showCamera({animated:true,
+		autoHide: true,
+		saveToPhotoGallery: true,
+		showControls: true,
+		mediaTypes: [Ti.Media.Media_Type_Photo],
+		success function(e) {showPhoto(e)} ,
+		error: function(e) {alert('There was a problem accessing the camera')}
+		})
+});
+var button2 = Ti.UI.createButton({
+	title : 'Navigate',
+	height : 30,
+	width : 30,
+	top : 30,
+	left : 30
+});
+button2.addEventListener('click', function(e) {alert('You clicked Me!');
+}); 
+
+// Listen for click events.
+button1.addEventListener('click', function() {
+	alert('\'button2\' was clicked!');
+});
+var nav = Titanium.UI.Android.NavigationWindow({
+	window: win1
+}); 
+
+win1.add(button);
+win2.add(nav);
+win2.open();
